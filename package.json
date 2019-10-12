@@ -2,7 +2,7 @@
 	"name": "relative-line-height",
 	"displayName": "Relative Line Height",
 	"description": "Use relative line height for editors.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "usernamehw",
 	"license": "MIT",
 	"engines": {
@@ -25,7 +25,7 @@
 	],
 	"main": "./dist/extension",
 	"contributes": {
-		"configuration":{
+		"configuration": {
 			"title": "Relative Line Height",
 			"properties": {
 				"relativeLineHeight.value": {
