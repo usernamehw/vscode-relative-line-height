@@ -9,7 +9,6 @@ export function activate(context: vscode.ExtensionContext): void {
 	updateConfig();
 
 	function updateConfig(e?: vscode.ConfigurationChangeEvent): void {
-		const EPSILON = 0.00001;
 		if (
 			e &&
 			(!e.affectsConfiguration(EXTENSION_NAME) && !e.affectsConfiguration('editor'))
@@ -23,13 +22,13 @@ export function activate(context: vscode.ExtensionContext): void {
 		const editorFontSize = editorConfig.get('fontSize') as number;
 		const editorLineHeight = editorConfig.get('lineHeight') as number;
 
-		const newLineHeightFloat = editorFontSize * relativeLineHeight;
+		const newLineHeight = Math.round(editorFontSize * relativeLineHeight);
 
-		if (Math.abs(editorLineHeight - newLineHeightFloat) < EPSILON) {
+		if (editorLineHeight === newLineHeight) {
 			return;
 		}
 
-		editorConfig.update('lineHeight', Math.round(newLineHeightFloat), true);
+		editorConfig.update('lineHeight', newLineHeight, true);
 	}
 
 	context.subscriptions.push(workspace.onDidChangeConfiguration(updateConfig));
